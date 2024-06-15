@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .modal{
+            width: 100%;
+            height: 90vh;
+            background-color: #e8e3e318;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .innerModal{
+            width: 400px;
+            height: auto;
+            padding: 10px;
+            background-color: white;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="openModal-btn" id="openModal-btn">Open Modal</button>
+        <div class="modal hide" id="modal">
+            <div class="innerModal" id="innerModal">
+                <div class="modal-body">
+                    <div class="modal-heading">
+                        Heading
+                    </div>
+                    <div class="modal-content" id="modal-content">
+                        <p class="paragraph">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet necessitatibus ullam totam quibusdam saepe consequatur mollitia corporis officiis magni eius.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="closeModal-btn" id="closeModal-btn">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        document.addEventListener("DOMContentLoaded",()=>{
+            modalFunction()
+        })
+
+        function modalFunction(){
+            let openModalBtn = document.getElementById("openModal-btn")
+            let closeModalBtn = document.getElementById("closeModal-btn")
+            let modal = document.getElementById("modal")
+            // console.log("HIi");
+            // console.log({ openModalBtn: openModalBtn });
+            // console.log({ openModalBtn: openModalBtn.className });
+            
+            openModalBtn.addEventListener("click",()=>{
+                  console.log("clicked on openModalBtn")
+               if(modal){
+                modal.classList.remove("hide")
+               }
+            })
+            closeModalBtn.addEventListener("click",(e)=>{
+                console.log("clicked on closeModalBtn")
+                e.stopPropagation()
+               if (modal) {
+                    modal.classList.add("hide")
+                }
+            })
+            modal.addEventListener("click",(e)=>{
+                console.log("Clicked on modal")
+                if(!e.target.closest("#innerModal")){
+                 modal &&  modal.classList.add("hide")
+                }
+            })
+
+        }
+    </script>
+
+</body>
+</html>
